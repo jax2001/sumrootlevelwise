@@ -2,6 +2,7 @@
 #include <queue>
 using namespace std;
 
+//define node via class for tree
 class Node{
 public:
     int data;
@@ -20,6 +21,7 @@ public:
 
 Node *root=NULL;
 
+//function to create tree
 Node* createTree(Node *node=NULL){
     int data;
     cout << "Enter number (Enter -1 to stop creation) : ";
@@ -36,11 +38,12 @@ Node* createTree(Node *node=NULL){
     }
 }
 
+//function to print the sum of leaf node at each level
 void printLevelLeafSum(){
     queue<pair<Node*,int>> qu;
     Node *tmp;
-    int sum=0;
-    int lvl=1;
+    int sum{0};
+    int lvl{1};
     if(root==NULL){
         cout << sum;
     }else{
@@ -55,12 +58,8 @@ void printLevelLeafSum(){
             if(tmp->right==NULL && tmp->left==NULL){
                 sum+=tmp->data;
             }else{
-                if(tmp->left!=NULL){
-                    qu.push({tmp->left,lvl+1});
-                }
-                if(tmp->right!=NULL){
-                    qu.push({tmp->right,lvl+1});
-                }
+                if(tmp->left!=NULL)     qu.push({tmp->left,lvl+1});
+                if(tmp->right!=NULL)    qu.push({tmp->right,lvl+1});
             }
             qu.pop();
         }
@@ -70,8 +69,8 @@ void printLevelLeafSum(){
 
 int main(int argc, const char * argv[]) {
     root=createTree();
-    cout << endl;
+    cout << "\n";
     printLevelLeafSum();
-    cout << endl;
+    cout << "\n";
     return 0;
 }
